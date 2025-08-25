@@ -1,20 +1,20 @@
-# Imagen base
+# Usar una imagen base de Node.js (ajustar según tu stack)
 FROM node:18-alpine
 
-# Carpeta de la app en contenedor
+# Establecer directorio de trabajo
 WORKDIR /app
 
-# Copiar package.json y package-lock.json
+# Copiar archivos de dependencias
 COPY package*.json ./
 
 # Instalar dependencias
-RUN npm install
+RUN npm ci --only=production
 
-# Copiar todo el código al contenedor
+# Copiar código fuente
 COPY . .
 
-# Exponer puerto
+# Exponer puerto (ajustar según tu app)
 EXPOSE 3000
 
-# Comando para iniciar la app
-CMD ["node", "app.js"]
+# Comando para ejecutar la aplicación
+CMD ["npm", "start"]
